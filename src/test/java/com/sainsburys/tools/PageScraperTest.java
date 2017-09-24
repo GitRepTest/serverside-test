@@ -2,7 +2,6 @@ package com.sainsburys.tools;
 
 import com.sainsburys.entity.Product;
 import org.hamcrest.CoreMatchers;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +10,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PageScraperTest {
     private final String DEFAULT_URL = "https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk/webapp/wcs/stores/servlet/gb/groceries/berries-cherries-currants6039.html";
@@ -22,8 +21,6 @@ public class PageScraperTest {
     public void setup(){
         pageScraper=new PageScraper();
     }
-
-
 
     @Test
     public void checkIfWebsiteReturnsData(){
@@ -69,6 +66,7 @@ public class PageScraperTest {
          * scrape each product details
          *     extract each product information
          * convert into valid json format*/
+
     }
 
     private Elements getElements(String pageContent) {

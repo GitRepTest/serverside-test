@@ -9,7 +9,9 @@ import java.util.List;
 
 public class PageScraper {
 
-    public String getPageSource(String url) {
+
+    String getPageSource(String url) {
+
         WebDriver driver = new HtmlUnitDriver();
         driver.get(url);
         return driver.getPageSource();
@@ -22,6 +24,5 @@ public class PageScraper {
         }
         return pageSources;
     }
-
 
 }

@@ -6,7 +6,6 @@ public class Product {
     private String unitPrice;
     private String description;
 
-
     public String getTitle() {
         return title;
     }

@@ -1,5 +1,6 @@
 package com.sainsburys.tools;
 
+import com.sainsburys.entity.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,9 +9,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by tech on 24/09/2017.
- */
 public class PageParser {
 
     private String pageSource;
@@ -33,7 +31,49 @@ public class PageParser {
         return urls;
     }
 
+    public Product getProductDetails(String productSource){
+        Product product = new Product();
+        Document doc = Jsoup.parse(productSource);
+        String kcal = getCaloriesPer100g(doc);
+        product.setKcalPer100g(kcal);
 
+        String description = doc.select(".productText p").first().text();
+        product.setDescription(description);
+
+        String title = doc.select(".productTitleDescriptionContainer h1").text();
+        product.setTitle(title);
+
+        String unitPrice = getPricePerUnit(doc);
+        product.setUnitPrice(unitPrice);
+        return product;
+    }
+
+    public List<Product> getProductDetails(List<String> productList){
+        List<Product> products = new ArrayList<Product>();
+        for(String product:productList){
+            products.add(getProductDetails(product));
+        }
+        return products;
+    }
+
+    private String getPricePerUnit(Document doc) {
+        return doc.select(".pricePerUnit").first().text().replaceAll("\\/ unit","").replaceAll("£","").trim();
+    }
+
+    private String getCaloriesPer100g(Document doc) {
+        String kcal;
+        if(doc.select(".nutritionTable").size()!=0) {
+            if (doc.select(".nutritionTable .tableRow0 td").size() > 0) {
+                kcal = doc.select(".nutritionTable .tableRow0 td").first().text();
+                kcal = kcal.substring(0, kcal.indexOf("kcal"));
+            }{
+                kcal = doc.select(".nutritionTable tr").get(2).select("td").first().text();
+            }
+        }else{
+            kcal="";
+        }
+        return kcal;
+    }
 
 
     private String cleanUrl(String url){

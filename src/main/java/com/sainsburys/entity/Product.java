@@ -6,6 +6,7 @@ public class Product {
     private String unitPrice;
     private String description;
 
+
     public String getTitle() {
         return title;
     }
@@ -37,4 +38,15 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", kcalPer100g='" + kcalPer100g + '\'' +
+                ", unitPrice='" + unitPrice + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
 }

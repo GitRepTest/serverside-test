@@ -47,27 +47,34 @@ public class PageScraperTest {
     }
 
     @Test
-    public void getEachProductDetails(){
+    public void checkIfProductDetailsAreValid(){
+        Product exPectedProduct = buildMockProduct();
+
         String pageContent = getPageSource(DEFAULT_URL);
         Elements elements = getElements(pageContent);
         PageParser pageParser = new PageParser(pageContent);
+
         List<String> urls = pageParser.getUrls("a",elements);
         List<String> productsList = pageScraper.getPageSources(urls);
         List<Product> products = pageParser.getProductDetails(productsList);
-    }
 
-
-
-    @Test
-    public void process(){
-        /**
-         * scrape page
-         * scrape page urls for each product
-         * scrape each product details
-         *     extract each product information
-         * convert into valid json format*/
+        Product actualProduct=products.get(0);
+        assertEquals(exPectedProduct.getTitle(),actualProduct.getTitle());
+        assertEquals(exPectedProduct.getDescription(),actualProduct.getDescription());
+        assertEquals(exPectedProduct.getKcalPer100g(),actualProduct.getKcalPer100g());
+        assertEquals(exPectedProduct.getUnitPrice(),actualProduct.getUnitPrice());
 
     }
+
+    private Product buildMockProduct() {
+        Product exPectedProduct = new Product();
+        exPectedProduct.setTitle("Sainsbury's Strawberries 400g");
+        exPectedProduct.setDescription("by Sainsbury's strawberries");
+        exPectedProduct.setKcalPer100g("33");
+        exPectedProduct.setUnitPrice("1.75");
+        return exPectedProduct;
+    }
+
 
     private Elements getElements(String pageContent) {
         PageParser pageParser = new PageParser(pageContent);

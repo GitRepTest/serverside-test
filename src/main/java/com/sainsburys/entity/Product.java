@@ -1,8 +1,15 @@
 package com.sainsburys.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
     private String title;
+
+    @JsonProperty("kcal_per_100g")
     private String kcalPer100g;
+
+    @JsonProperty("unit_price")
     private String unitPrice;
     private String description;
 
@@ -14,6 +21,7 @@ public class Product {
         this.title = title;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public String getKcalPer100g() {
         return kcalPer100g;
     }

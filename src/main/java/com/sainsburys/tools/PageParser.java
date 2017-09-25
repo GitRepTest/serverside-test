@@ -19,7 +19,7 @@ public class PageParser {
         this.pageSource=pageSource;
     }
 
-    Elements getItems(String cssSelector){
+    public Elements getItems(String cssSelector){
         Document doc = Jsoup.parse(this.pageSource);
         return doc.select(cssSelector);
     }

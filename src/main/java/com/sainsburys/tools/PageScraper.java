@@ -10,7 +10,7 @@ import java.util.List;
 public class PageScraper {
 
 
-    String getPageSource(String url) {
+    public String getPageSource(String url) {
 
         WebDriver driver = new HtmlUnitDriver();
         driver.get(url);

@@ -14,3 +14,5 @@ following command:
 mvn exec:java -Dexec.mainClass="com.sainsburys.Main"
 
 
+This project has been developed using IntelliJ and you can import the project in intellJ as a maven project and run
+all the tests as well as the main class from the IDE.

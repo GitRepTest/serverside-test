@@ -57,11 +57,11 @@ public class PageScraperTest {
         List<String> urls = pageParser.getUrls("a",elements);
         List<String> productsList = pageScraper.getPageSources(urls);
         List<Product> products = pageParser.getProductDetails(productsList);
-
         Product actualProduct=products.get(0);
         assertEquals(exPectedProduct.getTitle(),actualProduct.getTitle());
         assertEquals(exPectedProduct.getDescription(),actualProduct.getDescription());
         assertEquals(exPectedProduct.getKcalPer100g(),actualProduct.getKcalPer100g());
+
         assertEquals(exPectedProduct.getUnitPrice(),actualProduct.getUnitPrice());
 
     }

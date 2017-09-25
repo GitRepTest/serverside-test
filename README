@@ -1,0 +1,16 @@
+In order to run this application, the following dependencies are required.
+
+Java 1.8
+Maven 3.5.0
+
+Once the project has been downloaded, go to the project root directory via the command line
+Once in the root directory of the project, you can run tests using the following maven command:
+
+mvn clean install
+
+If you want to run the application and see the list of products as well as the total price in json format then run the
+following command:
+
+mvn exec:java -Dexec.mainClass="com.sainsburys.Main"
+
+

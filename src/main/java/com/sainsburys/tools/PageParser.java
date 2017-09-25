@@ -14,6 +14,7 @@ public class PageParser {
 
     private String pageSource;
     private final String PREFIX_URL = "https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk";
+    private final String POUND_SYMBOL="\u00A3";
 
     public PageParser(String pageSource) {
         this.pageSource = pageSource;
@@ -61,7 +62,7 @@ public class PageParser {
     }
 
     private String getPricePerUnit(Document doc) {
-        return doc.select(".pricePerUnit").first().text().replaceAll("\\/ unit", "").replaceAll("£", "").trim();
+        return doc.select(".pricePerUnit").first().text().replaceAll("\\/ unit", "").replace(POUND_SYMBOL, "").trim();
     }
 
     private String getCaloriesPer100g(Document doc) {
